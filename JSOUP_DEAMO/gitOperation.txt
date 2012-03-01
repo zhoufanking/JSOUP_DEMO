@@ -1,0 +1,2 @@
+git remote add jsoup git@github.com:zhoufanking/JSOUP_DEMO.git
+git push jsoup master
