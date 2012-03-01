@@ -30,7 +30,7 @@ public class ParseURL {
 		 try {
 				doc = Jsoup.connect(_URL).userAgent("Mozilla").timeout(3000).get();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				throw e;
 			}
 		return true;
@@ -44,7 +44,7 @@ public class ParseURL {
 //		try {
 //			doc = Jsoup.connect(_URL).userAgent("Mozilla").get();
 //		} catch (IOException e) {
-//			// TODO Auto-generated catch block
+//			
 //			e.printStackTrace();
 //		}
 		// System.out.println(doc.title());
@@ -82,10 +82,19 @@ public class ParseURL {
 			// System.out.println(news.text());
 
 			for (Element summery : summeries) {
-				summeryVec.add(summery.text().replace("\u2014", "-"));	//\u2014 unicode中的破折号
+				summeryVec.add(summery.text().replace("\u2014", "-"));	
 			}
 		}
 		return summeryVec;
+	}
+	
+	public void printContent(int pages, Vector<String> item, Vector<String>item_summery){
+		System.out.println("====================================");
+		System.out.println("第" + pages + "页");
+		for (int i = 0; i < item.size(); i++) {
+			System.out.println(i+item.get(i));
+			System.out.println(item_summery.get(i));
+		}
 	}
 
 	private Document doc;
