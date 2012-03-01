@@ -12,17 +12,10 @@ public class test {
 	 */
 	public static void main(String[] args) {
 
-		String WEB_ADDRESS = "http://www.cnblogs.com";
+		
 		// System.out.println(doc.html());
 		ParseURL cnblogs = new ParseURL();
-		// cnblogs.setURL(WEB_ADDRESS);
-
-		try {
-			cnblogs.Connect(WEB_ADDRESS);
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+		cnblogs.initContent();
 
 		/*
 		 * get all links in a web page Elements
@@ -39,32 +32,6 @@ public class test {
 		 * 
 		 * }
 		 */
-
-		int pages = 1;
-		Vector<String> item;
-		Vector<String> item_summery;
-
-		for (; pages < 3; pages++) {
-
-			if (pages == 1) {
-				item = cnblogs.getHeadLine();
-				item_summery = cnblogs.getHeadLineSummery();
-			} else {
-				
-				try {
-					cnblogs.Connect(WEB_ADDRESS + "//p" + pages);
-				} catch (IOException e) {
-
-					e.printStackTrace();
-					
-				}
-				
-				item = cnblogs.getHeadLine();
-				item_summery = cnblogs.getHeadLineSummery();
-			}
-			cnblogs.printContent(pages, item, item_summery);
-		}
-		
 		cnblogs.cleanAll();
 		
 	}

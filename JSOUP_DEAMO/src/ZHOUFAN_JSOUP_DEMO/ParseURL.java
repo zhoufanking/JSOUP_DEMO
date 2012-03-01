@@ -3,7 +3,6 @@ package ZHOUFAN_JSOUP_DEMO;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -84,21 +83,21 @@ public class ParseURL {
 		return summeryVec;
 	}
 
-	public void initContent(){
-		//if cached file exists, load the initial content from the file;
-		//else create a cache file, fetch the web pages print out the contents,
-		//and  then store the contents to the cache file.
-		File storage = new File("./"+caches);
-		if (storage.exists() && storage.length()!=0) {
-			
+	public void initContent() {
+		// if cached file exists, load the initial content from the file;
+		// else create a cache file, fetch the web pages print out the contents,
+		// and then store the contents to the cache file.
+		File storage = new File("./" + caches);
+		if (storage.exists() || storage.length() != 0) {
+
 			loadFromCache();
-		}
-		else{
-			
-			loadFromWeb();	
+		} else {
+
+			loadFromWeb();
 			updateCache();
 		}
 	}
+
 	public void printContent(int pages, Vector<String> item,
 			Vector<String> item_summery) {
 		System.out.println("====================================");
@@ -109,29 +108,70 @@ public class ParseURL {
 		}
 		System.out.println("done");
 	}
-	
-	
-	//TODO need implement
-	private void loadFromCache(){
-		
+
+	// TODO need implement
+	private void loadFromCache() {
+
 	}
-	//TODO need implement
-	private void loadFromWeb(){
-		
+
+	// TODO need implement
+	private void loadFromWeb() {
+
+		try {
+
+			Connect(WEB_ADDRESS);
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		int pages = 1;
+		Vector<String> item;
+		Vector<String> item_summery;
+
+		for (; pages < 3; pages++) {
+
+			if (pages == 1) {
+
+				item = getHeadLine();
+				item_summery = getHeadLineSummery();
+
+			} else {
+
+				try {
+
+					Connect(WEB_ADDRESS + "//p" + pages);
+
+				} catch (IOException e) {
+
+					e.printStackTrace();
+
+				}
+
+				item = getHeadLine();
+
+				item_summery = getHeadLineSummery();
+			}
+
+			printContent(pages, item, item_summery);
+		}
 	}
-	//TODO need implement
-	private void updateCache()
-	{
-		
+
+	// TODO need implement
+	private void updateCache() {
+
 	}
-	//TODO need implement
-	//close and free all recourses
-	public void cleanAll(){
-		
+
+	// TODO need implement
+	// close and free all recourses
+	public void cleanAll() {
+
 	}
-	
+
 	private Document doc;
 	private String _URL;
-	private final String caches = "cache.txt"; 
+	private final String caches = "cache.txt";
+	private final String WEB_ADDRESS = "http://www.cnblogs.com";
 
 }
