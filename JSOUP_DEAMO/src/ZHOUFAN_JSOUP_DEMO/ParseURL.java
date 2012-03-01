@@ -1,8 +1,12 @@
 package ZHOUFAN_JSOUP_DEMO;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.Vector;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -90,11 +94,11 @@ public class ParseURL {
 		File storage = new File("./" + caches);
 		if (storage.exists() || storage.length() != 0) {
 
-			loadFromCache();
+			loadFromCache(storage);
 		} else {
 
 			loadFromWeb();
-			updateCache();
+			updateCache(storage);
 		}
 	}
 
@@ -109,12 +113,23 @@ public class ParseURL {
 		System.out.println("done");
 	}
 
-	// TODO need implement
-	private void loadFromCache() {
 
+	private void loadFromCache(File file) {
+		
+		Scanner input = null;
+		try {
+			input = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		do{
+			System.out.println(input.nextLine());
+		}	while(input.hasNextLine());
 	}
 
-	// TODO need implement
+	
 	private void loadFromWeb() {
 
 		try {
@@ -127,8 +142,6 @@ public class ParseURL {
 		}
 
 		int pages = 1;
-		Vector<String> item;
-		Vector<String> item_summery;
 
 		for (; pages < 3; pages++) {
 
@@ -158,9 +171,19 @@ public class ParseURL {
 		}
 	}
 
-	// TODO need implement
-	private void updateCache() {
-
+	private void updateCache(File file) {
+		PrintWriter output = null;
+		try {
+			output = new PrintWriter(file);
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < item.size(); i++) {
+			output.println(i + item.get(i));
+			output.println(item_summery.get(i));
+		}
 	}
 
 	// TODO need implement
@@ -171,6 +194,8 @@ public class ParseURL {
 
 	private Document doc;
 	private String _URL;
+	private Vector<String> item;
+	private Vector<String> item_summery;
 	private final String caches = "cache.txt";
 	private final String WEB_ADDRESS = "http://www.cnblogs.com";
 
