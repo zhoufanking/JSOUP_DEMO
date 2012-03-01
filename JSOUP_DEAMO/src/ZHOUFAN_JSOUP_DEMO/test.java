@@ -46,23 +46,26 @@ public class test {
 
 		for (; pages < 3; pages++) {
 
-			if (pages < 2) {
+			if (pages == 1) {
 				item = cnblogs.getHeadLine();
 				item_summery = cnblogs.getHeadLineSummery();
 			} else {
+				
 				try {
 					cnblogs.Connect(WEB_ADDRESS + "//p" + pages);
 				} catch (IOException e) {
 
 					e.printStackTrace();
+					
 				}
+				
 				item = cnblogs.getHeadLine();
 				item_summery = cnblogs.getHeadLineSummery();
 			}
 			cnblogs.printContent(pages, item, item_summery);
-			
 		}
-		System.out.println("done");
+		
+		cnblogs.cleanAll();
+		
 	}
-
 }
