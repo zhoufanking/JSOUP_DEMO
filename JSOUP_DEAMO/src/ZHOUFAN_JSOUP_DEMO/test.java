@@ -1,7 +1,5 @@
 package ZHOUFAN_JSOUP_DEMO;
 
-import java.io.IOException;
-import java.util.Vector;
 
 public class test {
 

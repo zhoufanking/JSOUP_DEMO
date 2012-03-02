@@ -120,7 +120,7 @@ public class ParseURL {
 		try {
 			input = new Scanner(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
