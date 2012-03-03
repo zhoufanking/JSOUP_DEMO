@@ -105,7 +105,7 @@ public class ParseURL {
 	public void printContent(int pages, Vector<String> item,
 			Vector<String> item_summery) {
 		System.out.println("====================================");
-		System.out.println("ç¬¬" + pages + "é¡µ");
+		System.out.println("µÚ"+ pages + "Ò³");
 		for (int i = 0; i < item.size(); i++) {
 			System.out.println(i + item.get(i));
 			System.out.println(item_summery.get(i));

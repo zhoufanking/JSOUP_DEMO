@@ -24,13 +24,14 @@ public class test {
 		 * String absHref = link.attr("abs:href");
 		 * 
 		 * System.out.println(id++ + link.text().replace("\u00a0", ""));//\u2014
-		 * unicode中的破折号
-		 * 
+		 * unicode涓殑鐮存姌鍙�		 * 
 		 * System.out.println(relHref); System.out.println(absHref);
 		 * 
 		 * }
 		 */
-		cnblogs.cleanAll();
+		
+		
+		//cnblogs.cleanAll();
 		
 	}
 }
